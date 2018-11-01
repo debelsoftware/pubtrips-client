@@ -1,6 +1,6 @@
-var globalData;
-var pubTime;
-var host = "http://localhost:8080" //"https://debelapi.website:8443"
+let globalData;
+let pubTime;
+let host = "http://localhost:8080" //"https://debelapi.website:8443"
 
 function checkLogin(){
   if (sessionStorage.getItem("authToken") != null){
@@ -21,11 +21,11 @@ function validate(data){
 }
 
 function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  var id_token = googleUser.getAuthResponse().id_token;
+  let profile = googleUser.getBasicProfile();
+  let id_token = googleUser.getAuthResponse().id_token;
   console.log(id_token);
   sessionStorage.setItem("authToken",id_token);
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("POST", host+'/auth', true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function() {
@@ -45,7 +45,7 @@ function onSignIn(googleUser) {
 }
 
 function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
+  let auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
     sessionStorage.setItem("authToken","null");
@@ -63,15 +63,15 @@ function signOut2() {
 }
 
 function getPersonalDates(){
-  var d = new Date();
-  var t = d.getTime();
-  var xhr = new XMLHttpRequest();
+  let d = new Date();
+  let t = d.getTime();
+  let xhr = new XMLHttpRequest();
   xhr.open("POST", host+'/users', true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function() {
     if(this.readyState == XMLHttpRequest.DONE && this.status == 200) {
       globalData = xhr.responseText;
-      var data = JSON.parse(globalData);
+      let data = JSON.parse(globalData);
       for (i=0; i < data["data"].length; i++){
         if (data["data"][i]["lastTime"] == pubTime["data"]){
           document.getElementById("append-users").innerHTML += '<li class="user rainbow" onclick="showModel('+i+')"><div class="left"><img src="'+data["data"][i]["profilePic"]+'" class="profile" alt=""><p>'+data["data"][i]["username"]+'</p></div><div class="right"><p id="usertime'+i+'">loading...</p><img src="../img/beer.svg" class="icon" alt=""></div></li>'
@@ -79,7 +79,7 @@ function getPersonalDates(){
         else {
           document.getElementById("append-users").innerHTML += '<li class="user" onclick="showModel('+i+')"><div class="left"><img src="'+data["data"][i]["profilePic"]+'" class="profile" alt=""><p>'+data["data"][i]["username"]+'</p></div><div class="right"><p id="usertime'+i+'">loading...</p><img src="../img/beer.svg" class="icon" alt=""></div></li>'
         }
-        var difference = t - data["data"][i]["lastTime"];
+        let difference = t - data["data"][i]["lastTime"];
         plural(difference,i)
       }
     }
@@ -88,9 +88,9 @@ function getPersonalDates(){
 }
 
 function plural(difference,i){
-  var minutes = 1000 * 60;
-  var hours = minutes * 60;
-  var days = hours * 24;
+  let minutes = 1000 * 60;
+  let hours = minutes * 60;
+  let days = hours * 24;
   if (Math.round(difference / days) < 1){
     document.getElementById("usertime" + i).innerHTML = "less than 24 hours ago";
   }
@@ -98,8 +98,8 @@ function plural(difference,i){
     document.getElementById("usertime" + i).innerHTML = "Missing Record";
   }
   else{
-    var diffInDays = Math.round(difference / days);
-    var diffInWeeks = Math.floor(diffInDays/7);
+    let diffInDays = Math.round(difference / days);
+    let diffInWeeks = Math.floor(diffInDays/7);
     if (diffInWeeks == 0){
       if (diffInDays == 1){
         document.getElementById("usertime" + i).innerHTML = "1 day ago";
@@ -123,16 +123,16 @@ function plural(difference,i){
 }
 
 function getGlobalData(){
-  var d = new Date();
-  var t = d.getTime();
-  var xhr = new XMLHttpRequest();
+  let d = new Date();
+  let t = d.getTime();
+  let xhr = new XMLHttpRequest();
   xhr.open("POST", host+'/lastpub', true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function() {
       if(this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         console.log(xhr.responseText);
         pubTime = JSON.parse(xhr.responseText);
-        var difference = t - pubTime["data"];
+        let difference = t - pubTime["data"];
         plural(difference,"Global");
         getPersonalDates();
       }
@@ -141,9 +141,9 @@ function getGlobalData(){
 }
 
 function updateDrink(){
-  var drink = document.getElementById("drink-input").value;
+  let drink = document.getElementById("drink-input").value;
   if (validate(drink)){
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open("POST", host+'/drink', true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function() {
@@ -163,9 +163,9 @@ function updateDrink(){
 }
 
 function updateUsername(){
-  var newUsername = document.getElementById("newusername-input").value;
+  let newUsername = document.getElementById("newusername-input").value;
   if (validate(newUsername)){
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open("POST", host+'/updateUsername', true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function() {
@@ -185,12 +185,12 @@ function updateUsername(){
 }
 
 function updateDistance(){
-  var newDistance = document.getElementById("newdistance-input").value;
+  let newDistance = document.getElementById("newdistance-input").value;
   if (newDistance >= 1000 || newDistance == "" || newDistance <0 || newDistance === null){
     document.getElementById("warning-text").innerHTML = "Data not valid. Ensure distance is between 0 and 1000";
   }
   else {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open("POST", host+'/updateDistance', true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function() {
@@ -210,7 +210,7 @@ function updateDistance(){
 function showModel(user){
   document.getElementById("model").style.visibility = "visible"
   document.getElementById("model").style.top = "0";
-  var data = JSON.parse(globalData);
+  let data = JSON.parse(globalData);
   document.getElementById("model-name").innerHTML = data["data"][user]["username"]
   document.getElementById("model-pic").src = data["data"][user]["profilePic"]
   document.getElementById("model-drink").innerHTML = data["data"][user]["drink"]
