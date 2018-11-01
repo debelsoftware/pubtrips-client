@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../master.css">
+    <title>Pub Trips</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Pub Trips</h1>
+    </nav>
+    <section id="info">
+      <section class="user-controls">
+        <a href="../app/firsttimesetup.html"><img id="settings-icon" src="../img/back.svg" alt=""></a>
+      </section>
+      <article id="user-entry" class="user-settings">
+        <h1>Make a group</h1>
+        <input type="text" name="" placeholder="Group ID eg. my-amazing-group123" id="drink-input" value="">
+        <input type="text" name="" placeholder="Group name eg. The best pub group" id="drink-input" value="">
+        <input type="text" name="" placeholder="Pub name eg. The best pub inn" id="drink-input" value="">
+        <p id="warning-text"></p>
+        <button type="button" onclick="updateDrink()" name="button">Create</button>
+      </article>
+      <article id="confirm-box" class="confirm">
+        <img src="../img/done.svg" alt="">
+        <h2>Updated</h2>
+        <a href="..">Back Home</a>
+      </article>
+      <div class="sub-box" id="shame-box">
+      </div>
+    </section>
+  </body>
+  <script type="text/javascript" src="../pub.js"></script>
+</html>

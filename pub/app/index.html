@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="359401561210-5c1jiugiu8mfft88hsl1vcj5ule3h53e.apps.googleusercontent.com">
+    <link rel="stylesheet" href="../master.css">
+    <title>Pub Trips</title>
+  </head>
+  <body>
+    <section class="model" id="model">
+      <img src="../img/close.svg" id="close-button" onclick="closeModel()" alt="">
+      <img class="profile" id="model-pic" src="" alt=""><h1 id="model-name">Name</h1>
+      <br>
+      <section id="info-container">
+        <div class="small-info">
+          <p>Drink Preference</p>
+          <img src="../img/soda.svg" alt="">
+          <h1 id="model-drink">Loading...</h1>
+        </div>
+        <div class="small-info">
+          <p>Distance to pub</p>
+          <img src="../img/pub.svg" alt="">
+          <h1 id="model-distance">Loading...</h1>
+        </div>
+      </section>
+    </section>
+    <nav>
+      <h1>Pub Trips</h1>
+    </nav>
+    <section id="info">
+      <section id="user-controls" class="user-controls">
+        <a href="../settings/index.html"><img id="settings-icon" src="../img/settings.svg" alt=""></a>
+      </section>
+      <article id="info-box" class="info-box">
+        <p>Last pub trip was</p>
+        <h2 class="clock" id="usertimeGlobal">Loading...</h2>
+      </article>
+      <article id="login-box" class="login">
+        <p>*New users will have their username set to the name on their Google account</p>
+        <div class='g-signin2' data-onsuccess='onSignIn'></div>
+      </article>
+      <div class="sub-box" id="shame-box">
+      </div>
+    </section>
+    <section id="users">
+      <ul id="append-users">
+      </ul>
+    </section>
+  </body>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript" src="../pub.js"></script>
+</html>

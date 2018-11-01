@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../master.css">
+    <title>Pub Trips</title>
+  </head>
+  <body>
+    <nav>
+      <h1>Pub Trips</h1>
+    </nav>
+    <section id="info">
+      <section class="user-controls">
+        <a href="."><img id="settings-icon" src="../img/back.svg" alt=""></a>
+      </section>
+      <article id="user-entry" class="user-settings">
+        <h1>Settings</h1>
+        <p>Change username</p>
+        <input type="text" name="" placeholder="New username" id="newusername-input" value="">
+        <p id="warning-text"></p>
+        <button type="button" onclick="updateUsername()" name="button">Change username</button>
+      </article>
+      <article id="confirm-box" class="confirm">
+        <img src="../img/done.svg" alt="">
+        <h2>Updated</h2>
+        <a href="..">Back Home</a>
+      </article>
+      <div class="sub-box" id="shame-box">
+      </div>
+    </section>
+  </body>
+  <script type="text/javascript" src="../pub.js"></script>
+</html>
